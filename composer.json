@@ -1,0 +1,21 @@
+{
+    "name": "jvtuta/start-projeto-php",
+    "description": "Start inicial de um projeto MVC em php",
+    "type": "library",
+    "license": "mit",
+    "authors": [
+        {
+            "name": "jvtuta",
+            "email": "joaovoliveira@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Core\\": "core/",
+            "vendor\\": "vendor/"
+        }
+    }
+}
