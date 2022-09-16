@@ -3,6 +3,7 @@
 namespace vendor\MFJvtuta\Database;
 
 use PDO;
+use PDOStatement;
 
 class Conn extends SqlQuery
 {
@@ -46,6 +47,31 @@ class Conn extends SqlQuery
       }
       $this->query = join(' ', $query);
     }
+  }
+
+    /**
+   * Prepare query for execution sanitizing it
+   * @return PDOStatement|false
+   */
+  private function prepareQuery(): PDOStatement  {
+    $this->query = trim($this->query);
+    str_replace('where', 'WHERE', $this->query);
+    $this->verifyWhere();
+    return $this
+      ->pdo
+      ->prepare($this->getQuery());
+  }
+  /**
+   * Execute query and return results
+   * @param array $params 
+   */
+  protected function get(array $params = []) {
+    $stmt = $this->prepareQuery();
+    $stmt->execute($params);
+    $stmt = $stmt->fetchAll(PDO::FETCH_CLASS);
+    if(count($stmt) == 1) 
+      return $stmt[0];
+    return $stmt;
   }
 }
 
