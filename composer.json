@@ -1,6 +1,7 @@
 {
   "name": "jvtuta/start-projeto-php",
   "description": "Start inicial de um projeto MVC em php",
+  "version": "0.1.0",
   "type": "library",
   "license": "mit",
   "authors": [
